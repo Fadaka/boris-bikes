@@ -1,5 +1,5 @@
 class Bike
   def working?
-    'i am working'
+    true
   end
 end
