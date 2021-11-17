@@ -2,9 +2,11 @@ require 'docking_station'
 require 'bike'
 
 describe DockingStation do 
-    it 'DockingStation responds to release_bike' do
+    it 'Release bike method releases a bike object and tests if working' do
         docking_station = DockingStation.new([])
-        expect(docking_station).to respond_to(:release_bike)
+        expect(docking_station.release_bike).to be_an_instance_of(Bike)
+        bike = docking_station.release_bike
+        expect(bike.working?).to be(true)
     end
 
     it 'gets a bike from the bike class' do
@@ -22,6 +24,5 @@ describe DockingStation do
         bmx = Bike.new
         docking_station.dock(bmx)
         expect(docking_station.docked_bikes.length).to be(1)
-        
     end
 end
