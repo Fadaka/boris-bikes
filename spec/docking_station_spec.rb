@@ -16,4 +16,10 @@ describe DockingStation do
         bmx = Bike.new
         expect(bmx.working?).to be true
     end
+    
+    it 'docking is possible' do
+        docking_station = DockingStation.new
+        bmx = Bike.new
+        expect(docking_station).to respond_to(:dock)
+    end
 end
