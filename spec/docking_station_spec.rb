@@ -3,7 +3,7 @@ require 'bike'
 
 describe DockingStation do 
     it 'DockingStation responds to release_bike' do
-        docking_station = DockingStation.new
+        docking_station = DockingStation.new([])
         expect(docking_station).to respond_to(:release_bike)
     end
 
@@ -18,8 +18,10 @@ describe DockingStation do
     end
     
     it 'docking is possible' do
-        docking_station = DockingStation.new
+        docking_station = DockingStation.new([])
         bmx = Bike.new
-        expect(docking_station).to respond_to(:dock)
+        docking_station.dock(bmx)
+        expect(docking_station.docked_bikes.length).to be(1)
+        
     end
 end
