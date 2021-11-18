@@ -37,6 +37,6 @@ describe DockingStation do
         docking_station = DockingStation.new
         bmx = Bike.new
         docking_station.dock(bmx)
-        expect{docking_station.dock(bmx)}.to raise_error(RuntimeError, "Dock is currently full")
+        expect{21.times{docking_station.dock(bmx)}}.to raise_error(RuntimeError, "Dock is currently full")
     end
 end
