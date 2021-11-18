@@ -32,4 +32,9 @@ describe DockingStation do
         docking_station = DockingStation.new
         expect{docking_station.release_bike}.to raise_error(RuntimeError, "Dock is empty, no bikes to release")
     end
+
+    it 'exception is raised not to recieve any more bikes' do
+        docking_station = DockingStation.new
+        expect{docking_station.dock}.to raise_error(RuntimeError, "Dock is currently full")
+    end
 end
