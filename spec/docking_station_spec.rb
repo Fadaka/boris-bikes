@@ -25,4 +25,9 @@ describe DockingStation do
         docking_station.dock(bmx)
         expect(docking_station.docked_bikes.length).to be(1)
     end
+
+    it 'exception is raised to not release bikes' do
+        docking_station = DockingStation.new([])
+        expect(docking_station.release_bike).to raise_error("Dock is empty, no bikes to release")
+    end
 end
