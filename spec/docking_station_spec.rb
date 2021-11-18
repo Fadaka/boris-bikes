@@ -3,7 +3,7 @@ require 'bike'
 
 describe DockingStation do 
     it 'Release bike method releases a bike object and tests if working' do
-        docking_station = DockingStation.new([])
+        docking_station = DockingStation.new
         expect(docking_station.release_bike).to be_an_instance_of(Bike)
         bike = docking_station.release_bike
         expect(bike.working?).to be(true)
@@ -20,14 +20,14 @@ describe DockingStation do
     end
     
     it 'docking is possible' do
-        docking_station = DockingStation.new([])
+        docking_station = DockingStation.new
         bmx = Bike.new
         docking_station.dock(bmx)
         expect(docking_station.docked_bikes.length).to be(1)
     end
 
     it 'exception is raised to not release bikes' do
-        docking_station = DockingStation.new([])
+        docking_station = DockingStation.new
         expect(docking_station.release_bike).to raise_error("Dock is empty, no bikes to release")
     end
 end
