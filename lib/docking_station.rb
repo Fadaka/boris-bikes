@@ -13,6 +13,9 @@ class DockingStation
     end
     
     def dock(bike)
+        if @docked_bikes.length == 1
+            raise "Dock is currently full"
+        end
         @docked_bikes.push(bike)
         p @docked_bikes
         return true

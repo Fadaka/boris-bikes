@@ -35,6 +35,8 @@ describe DockingStation do
 
     it 'exception is raised not to recieve any more bikes' do
         docking_station = DockingStation.new
-        expect{docking_station.dock}.to raise_error(RuntimeError, "Dock is currently full")
+        bmx = Bike.new
+        docking_station.dock(bmx)
+        expect{docking_station.dock(bmx)}.to raise_error(RuntimeError, "Dock is currently full")
     end
 end
