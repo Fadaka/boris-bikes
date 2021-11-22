@@ -1,5 +1,15 @@
 class Bike
+  attr_reader :working
+  
+  def initialize(working = true)
+    @working = working
+  end
+
   def working?
-    true
+    @working 
+  end
+
+  def rep_broken_bike
+    @working = false
   end
 end
