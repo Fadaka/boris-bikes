@@ -3,11 +3,14 @@ require 'bike'
 
 describe DockingStation do 
     it 'Release bike method releases a bike object and tests if working' do
-        docking_station = DockingStation.new
-        bmx = Bike.new
-        docking_station.dock(bmx)   
-        docking_station.release_bike(bmx) 
-        expect(bmx.working?).to be(true)
+        #docking_station = DockingStation.new
+        #docking_station.dock(bmx)   
+        #bmx = Bike.new
+        #docking_station.release_bike(bmx) 
+        #expect(bmx.working?).to be(true)
+        subject.dock Bike.new
+        bike = subject.release_bike
+        expect(bike).to be(true)
     end
 
     it 'gets a bike from the bike class' do
@@ -49,7 +52,7 @@ describe DockingStation do
         expect(docking_station.capacity).to eq(20)
     end
 
-    it 'should not release broken bike' do
+    it 'working bike should be released' do
         docking_station = DockingStation.new
         b1 = Bike.new
         b2 = Bike.new
@@ -58,5 +61,24 @@ describe DockingStation do
         docking_station.dock(b2)
         docking_station.release_bike(b1)
         expect(docking_station.docked_bikes).to match_array(b2)
+    end
+
+    it 'should accept both working and broken bikes' do
+        docking_station = DockingStation.new
+        b1 = Bike.new
+        b2 = Bike.new
+        b1.rep_broken_bike
+        docking_station.dock(b1)
+        docking_station.dock(b2)
+        expect(docking_station.docked_bikes).to match_array([b1,b2]) 
+    end
+
+    it 'fail should be raised to stop broken bikes being released'do
+        docking_station = DockingStation.new
+        b1 = Bike.new
+        b1.rep_broken_bike
+        docking_station.dock(b1)
+        expect(docking_station.docked_bikes).to match_array([b1])
+        expect{docking_station.release_bike(b1)}.to raise_error("Sorry this bike is broken and cannot be released")
     end
 end
