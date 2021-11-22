@@ -6,9 +6,8 @@ describe DockingStation do
         docking_station = DockingStation.new
         bmx = Bike.new
         docking_station.dock(bmx)   
-        expect(docking_station.release_bike).to be_an_instance_of(Bike)
-        bike = docking_station.release_bike 
-        expect(bike.working?).to be(true)
+        docking_station.release_bike(bmx) 
+        expect(bmx.working?).to be(true)
     end
 
     it 'gets a bike from the bike class' do
@@ -57,7 +56,7 @@ describe DockingStation do
         b2.rep_broken_bike
         docking_station.dock(b1)
         docking_station.dock(b2)
-        docking_station.release_bike
+        docking_station.release_bike(b1)
         expect(docking_station.docked_bikes).to match_array(b2)
     end
 end

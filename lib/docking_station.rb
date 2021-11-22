@@ -1,3 +1,5 @@
+require_relative "./bike.rb"
+
 class DockingStation
     attr_reader :docked_bikes , :capacity
     DEFAULT_CAPACITY = 20
@@ -6,11 +8,14 @@ class DockingStation
         @capacity = capacity
     end
 
-    def release_bike
+    def release_bike(bike=nil)
         if empty?
             raise "Dock is empty, no bikes to release"
-        else 
-            Bike.new
+        elsif bike.working? == false
+            raise "Sorry this bike is broken and cannot be released"
+        else
+            @docked_bikes.delete(bike)
+
         end
     end
     
