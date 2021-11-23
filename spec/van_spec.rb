@@ -36,14 +36,14 @@ describe Van do
     end
 
     it 'should set the capacity to the default capacity(10) when none is given' do
-        expect(subject.capacity).to eq(10)
+        expect(subject.capacity).to eq(20)
     end
 
     it 'working and broken bike should be released ' do
         subject.dock(bike)
         subject.dock(broken_bike)
-        subject.release_bike(bike)
-        subject.release_bike(broken_bike)
+        subject.release_bike(ven, bike)
+        subject.release_bike(ven, broken_bike)
         expect(subject.docked_bikes).to match_array([])
     end
 

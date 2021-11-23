@@ -37,7 +37,7 @@ describe Garage do
     end
 
     it 'should set the capacity to the default capacity(30) when none is given' do
-        expect(subject.capacity).to eq(30)
+        expect(subject.capacity).to eq(20)
     end
 
     it 'working and broken bike should be released ' do

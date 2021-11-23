@@ -11,10 +11,10 @@ module BikeContainer
         @capacity = capacity
     end
 
-    def release_bike(released_by, bike=nil)
+    def release_bike(released_by=nil, bike=nil)
         if empty?
             raise "Dock is empty, no bikes to release"
-        elsif bike.working? == false && released_by.is_a(DockingStation)
+        elsif bike.working? == false && released_by.is_a?(DockingStation)
             #released_by.is_a? DockingStation
             raise "Sorry this bike is broken and cannot be released"
         else
